@@ -1,0 +1,44 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<main class="container">
+
+    <br>
+
+    <h1 class="display-5"> BLOG </h1>
+    
+    <div class="row">
+        <% for(let blog of blogs) { %>
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card mx-auto"> 
+                    <div class="card-body">
+                        <h5 class="card-title"> <%= blog.topic %> </h5>
+                        <!-- <p class="card-text"> <%= blog.desc.substring(0, 200)%>
+                            <a href="/blogs/<%= blog._id %>" class="btn btn-outline-secondary btn-sm"> Read More... </a>
+                        </p>
+                        <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer"><cite title="Source Title"> <%= blog.name %> </cite></footer>
+                        </blockquote> -->
+
+                        <figure class="text">
+                            <p class="card-text"> <%= blog.desc.substring(0, 200)%>
+                                <a href="/blogs/<%= blog._id %>" class="btn btn-outline-secondary btn-sm"> Read More... </a>
+                            </p>
+                            <div class="mb-3">
+                                <blockquote class="blockquote mb-0">
+                                    <figcaption class="blockquote-footer">
+                                        By <cite title="Source Title"> <%= blog.name %> </cite>
+                                    </figcaption>
+                                </blockquote>
+                            </div>
+                        </figure>
+                        
+                    </div>
+                </div>
+            </div>
+        <% } %> 
+    </div>
+
+</main>
+
+<%- include("../partials/footer") %>

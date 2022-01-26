@@ -1,0 +1,26 @@
+:root {
+    /* --main-color: #1d3557; */
+    --main-color: #ddbea9;
+}
+
+.navbar {
+    background-color: var(--main-color);
+}
+
+main {
+    margin-top: 3.5rem;
+}
+
+/* li {
+    color: black;
+} */
+
+.card {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 0px 2px rgb(104, 104, 104);
+}
+
+.fas {
+    color: white;
+}

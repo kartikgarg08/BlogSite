@@ -1,0 +1,81 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<main class="container">
+
+    <%- include("../partials/flash") %> 
+
+    <div class="row">
+        <div class="card mx-auto mt-3">
+            <div class="card-body ">
+
+                <h5 class="card-title text-center"> <%= blog.topic %> </h5>
+                <!-- <p class="card-text"> <%= blog.desc %> </p> -->
+
+                <!-- <blockquote class="blockquote mb-0">
+                    <footer class="blockquote-footer"><cite title="Source Title"> <%= blog.name %> </cite></footer>
+                </blockquote> -->
+
+                <!-- <a href="/blogs/<%= blog._id %>/edit" class="btn btn-outline-primary btn-small"> Edit </a>
+
+                <form class="d-inline-block" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-outline-danger btn-small"> Delete </button>
+                </form> -->
+
+                <figure class="text-center">
+                    <blockquote class="blockquote">
+                        <p class="card-text"> <%= blog.desc %> </p>
+                        <figcaption class="blockquote-footer">
+                            By <cite title="Source Title"> <%= blog.name %> </cite>
+                        </figcaption>
+                    </blockquote>
+                </figure>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <!-- <button class="btn btn-primary me-md-2" type="button">Button</button>
+                    <button class="btn btn-primary" type="button">Button</button> -->
+                    <a href="/blogs/<%= blog._id %>/edit" class="btn btn-outline-primary btn-sm text-center"> Edit </a>
+                    <form class="d-inline-block" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-outline-danger btn-sm"> Delete </button>
+                    </form>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <h2 class="display-6 mt-3"> Comments </h2>
+
+        <div class="mb-3">
+            <form action="/blogs/<%= blog._id %>/review" method="POST">
+
+                <div class="mb-3">
+                    <label for="comment" class="form-label"> Comment: </label>
+                    <textarea class="form-control" name="comment" id="comment" rows="5"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success"> Submit </button>
+
+            </form>
+        </div>
+
+        <div class="mb-3">
+            <% for(let review of blog.reviews) { %>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p class="card-text"> <%= review.comment %> </p>
+                        <a href="#" class="btn btn-danger btn-small"> Delete </a>
+                    </div>
+                </div>
+            <% } %>  
+        </div>
+        
+    </div>
+
+</main>
+
+<%- include("../partials/footer") %>
