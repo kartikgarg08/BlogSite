@@ -21,10 +21,6 @@ const blogSchema = new mongoose.Schema({
             ref: 'Review'
         }
     ]
-    // date: {
-    //     type: Date,
-    //     trim: true,
-    // }
 });
 
 const Blog = mongoose.model('Blog', blogSchema);

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blog');
 const Review = require('../models/review');
+const { isLoggedIn } = require('../middleware');
 
 //get all the blogs
 router.get('/blogs', async(req, res) => {
@@ -37,6 +38,7 @@ router.get('/blogs/:id', async(req, res) => {
     try {
         const { id } = req.params;
 
+        //inflating the found blog with the reviews using populate
         const blog = await Blog.findById(id).populate('reviews');
         res.render('blogs/show', { blog });
     } 
@@ -47,7 +49,7 @@ router.get('/blogs/:id', async(req, res) => {
 });
 
 //edit a blog form prefilled with data
-router.get('/blogs/:id/edit', async(req, res) => {
+router.get('/blogs/:id/edit', isLoggedIn, async(req, res) => {
     try {
         const { id } = req.params;
         const blog = await Blog.findById(id);
@@ -59,8 +61,8 @@ router.get('/blogs/:id/edit', async(req, res) => {
     }
 });
 
-//updating the blog
-router.patch('/blogs/:id', async(req, res) => {
+//updating the blog with given payload
+router.patch('/blogs/:id', isLoggedIn, async(req, res) => {
     try {
         const updateBlog = req.body;
         const { id } = req.params;
@@ -74,7 +76,7 @@ router.patch('/blogs/:id', async(req, res) => {
 });
 
 //delete a blog
-router.delete('/blogs/:id', async(req, res) => {
+router.delete('/blogs/:id', isLoggedIn, async(req, res) => {
     try {
         const { id } = req.params;
         await Blog.findByIdAndDelete(id);
@@ -87,20 +89,20 @@ router.delete('/blogs/:id', async(req, res) => {
 });
 
 //creating comment for each blog
-router.post('/blogs/:id/comment', async(req, res) => {
+router.post('/blogs/:id/comment', isLoggedIn, async(req, res) => {
     try {
         const { id } = req.params;
         const blog = await Blog.findById(id);
 
         const { comment } = req.body;
-        const review = new Review({ comment });
+        const review = new Review({ comment, user: req.user.username });
 
         blog.reviews.push(review);
 
         await blog.save();
         await review.save();
 
-        req.flash('success', 'Successfully created your review!!');
+        req.flash('success', 'Successfully created comment!!');
         res.redirect(`/blogs/${id}`);
     } 
     catch (e) {
