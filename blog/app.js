@@ -12,6 +12,7 @@ const User = require('./models/user');
 const dotenv = require('dotenv');
 
 dotenv.config();
+app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/blog-db')
 .then(()=> console.log('DB Connected'))
@@ -63,6 +64,9 @@ app.use(blogRoutes);
 app.use(authRoutes);
 
 const PORT = process.env.PORT || 8000;
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('/'));
+}
 
 app.listen(PORT, ()=>{
     console.log(`Server running at port ${PORT}`);
