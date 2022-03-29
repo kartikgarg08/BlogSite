@@ -10,6 +10,7 @@
     "ejs": "^3.1.6",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
+    "heroku": "^7.60.0",
     "method-override": "^3.0.0",
     "mongoose": "^6.1.7",
     "nodemon": "^2.0.15",
@@ -21,7 +22,7 @@
   },
   "scripts": {
     "start": "node ./app.js",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "keywords": [],
   "author": "",
