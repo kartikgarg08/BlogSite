@@ -9,6 +9,9 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStategy = require('passport-local');
 const User = require('./models/user');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 mongoose.connect('mongodb://localhost:27017/blog-db')
 .then(()=> console.log('DB Connected'))
@@ -59,6 +62,8 @@ app.get('/error', (req, res) => {
 app.use(blogRoutes);
 app.use(authRoutes);
 
-app.listen(8000, ()=>{
-    console.log('Server running at port 8000');
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, ()=>{
+    console.log(`Server running at port ${PORT}`);
 });
