@@ -1,7 +1,7 @@
 # BlogSite
 
-*Goal* - The user can read blogs and get updated on the thoughts or ideas of other users. Blogs allow users to share their thoughts and ideas. Commenting on another user's blog is a way for users to interact with each other.
+*Goal* - Developed a blog web application with the objective of enabling users to share and stay updated on thoughts and ideas. Implemented commenting functionality to foster user interaction.
 
-*Technologies used* - CRUD operations, NodeJS, Express, MongoDB.
+*Technologies used* - CRUD, NodeJS, Express, MongoDB.
 
-*Result* - The application allows users to create, read, update, and delete blogs. Upon signing up or logging in, you will be able to access the functionalities.
+*Result* - Successfully implemented a user-friendly blog application where users can engage in meaningful interactions by sharing, reading, and commenting on each other's thoughts and ideas. Accessible functionalities are provided upon user sign-up or login.
